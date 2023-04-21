@@ -4,13 +4,6 @@ import java.awt.Font;
 import java.io.File;
 import java.io.IOException;
 
-import com.ensea.nya.commands.ConsoleCommands;
-import com.ensea.nya.game.game.Party;
-import com.ensea.nya.graphics.gamesStates.CharacterSelectionState;
-import com.ensea.nya.graphics.gamesStates.MainMenuState;
-import com.ensea.nya.graphics.gamesStates.MapState;
-import com.ensea.nya.graphics.gamesStates.SimpleGameState;
-import com.ensea.nya.graphics.hud.DevConsoleWindow;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Cursor;
 import org.lwjgl.input.Mouse;
@@ -22,6 +15,13 @@ import org.newdawn.slick.state.transition.EmptyTransition;
 import org.newdawn.slick.state.transition.Transition;
 
 import com.ensea.nya.app.Game;
+import com.ensea.nya.commands.ConsoleCommands;
+import com.ensea.nya.game.game.Party;
+import com.ensea.nya.graphics.gamesStates.CharacterSelectionState;
+import com.ensea.nya.graphics.gamesStates.MainMenuState;
+import com.ensea.nya.graphics.gamesStates.MapState;
+import com.ensea.nya.graphics.gamesStates.SimpleGameState;
+import com.ensea.nya.graphics.hud.DevConsoleWindow;
 
 public class App {
 
@@ -167,6 +167,10 @@ public class App {
 
   public static void main(String[] s) {
     System.setProperty("org.lwjgl.librarypath", new File("natives").getAbsolutePath());
+    System.setProperty("net.java.games.input.DefaultControllerEnvironment", new File("natives").getAbsolutePath());
+    System.setProperty("net.java.games.input.DirectAndRawInputEnvironmentPlugin", new File("natives").getAbsolutePath());
+    System.setProperty("net.java.games.input.librarypath",
+        new File("natives").getAbsolutePath());
     try {
       // ScalableGame scalable = new ScalableGame(game, 1000, 1000, false);
       game = new Game(GAME_NAME);

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ListUtilities<O> {
 
-	private List<O> list;
+	public List<O> list;
 
 	public ListUtilities(List<O> list) {
 		this.list = list;

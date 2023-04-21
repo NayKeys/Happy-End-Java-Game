@@ -1,0 +1,17 @@
+1/Lorenz Joe Star
+2/Trèfle à 2 feuilles
+3/Bouclier
+4/Trèfle à 4 feuilles
+5/Trèfle à 5 feuilles
+6/Vendeur
+7/Ghoul
+8/Hache en fer
+9/Hache en acier
+10/Hache en argent
+11/Hache en or
+12/Sabre en fer
+13/Sabre en acier
+14/Sabre en argent
+15/Sabre en or
+16/Azuna Tsuruyuki, la Lame Vengeresse
+24/Celia, Lancier

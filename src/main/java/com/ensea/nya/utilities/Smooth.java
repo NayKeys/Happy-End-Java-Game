@@ -65,15 +65,17 @@ public enum Smooth {
 		double p = 0;
 		float pBis;
 
-		for (int x = 0; x<=timeMillis; x++) {
+		for (int x = 0; x <= timeMillis; x++) {
 			if (p!=0)
-				function.add(end-(float) p);
-			pBis = listU.getLastValue()-listU.getLastValue(2);
-			if (pBis!=0)
-				if(start > end)
-					output.add(-pBis);
-				else
-					output.add(pBis);
+				function.add(end - (float) p);
+      if (listU.list.size() > 1) {
+        pBis = listU.getLastValue()-listU.getLastValue(2);
+        if (pBis != 0)
+          if(start > end)
+            output.add(-pBis);
+          else
+            output.add(pBis);
+      }
 			if(start > end)
 				p = function(timeMillis, start, end, smooth, x);
 			else

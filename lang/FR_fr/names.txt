@@ -1,0 +1,24 @@
+1/Greed
+2/Trèfle à 2 feuilles
+3/Bouclier
+4/Trèfle à 4 feuilles
+5/Trèfle à 5 feuilles
+6/Vendeur
+7/Ghoul
+8/Hache en fer
+9/Hache en acier
+10/Hache en argent
+11/Hache en or
+12/Sabre en fer
+13/Sabre en acier
+14/Sabre en argent
+15/Sabre en or
+16/Azuna
+17/Hache
+18/Sabre
+19/Medusa
+20/Voleur
+21/Projectile
+22/Sablier
+23/Lance Pierre
+24/Celia
