@@ -1,0 +1,95 @@
+package com.ensea.nya.game.fights;
+
+import java.util.Random;
+
+import com.ensea.nya.game.entities.Fighter;
+import com.ensea.nya.game.entities.characters.PlayerCharacter;
+import com.ensea.nya.game.items.fightItems.BattleItem;
+import com.ensea.nya.game.items.fightItems.Shield;
+import com.ensea.nya.game.items.fightItems.exceptions.NotEnoughMunitions;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+
+public class Fight {
+
+	public Fighter fighter;
+	public PlayerCharacter player;
+	private float playerDodgeChance;
+	private float fighterDodgeChance;
+	private Fighter currentAnimation, looser, winner;
+
+	private boolean firstPartEnd;
+
+	public Fight(PlayerCharacter player, Fighter fighter) throws SlickException {
+		this.player = player;
+		this.fighter = fighter;
+
+		initBattle();
+
+		currentAnimation = player;
+		if (!(new Random().nextFloat() <= fighterDodgeChance)) {
+			// TODO Player Attack Animation
+			looser = fighter;
+			winner = player;
+		}
+	}
+
+	private void sedondPart() {
+		firstPartEnd = true;
+		if (winner != null)
+			end();
+		else {
+			currentAnimation = fighter;
+			if (!(new Random().nextFloat() <= playerDodgeChance)) {
+				if (!player.haveShield()) {
+					looser = player;
+					winner = fighter;
+				} else
+					player.setShieldState(Shield.BROKEN);
+			}
+		}
+		end();
+	}
+
+	private void end() {
+		if (winner != null)
+			looser.defeat(winner);
+		else {
+			//TODO pas de gagnant
+		}
+	}
+
+	public void draw(GameContainer container) {
+		if (!currentAnimation.attackAnimation(container)) {
+			if (!firstPartEnd)
+				sedondPart();
+			else
+				end();
+		}
+	}
+
+	private void initBattle() throws SlickException {
+		player.initBattle();
+		fighter.initBattle();
+
+		if (player.slingshot.isEquiped())
+			// TODO Ask shoot ?
+			if (true)
+				try {
+					player.slingshot.shoot();
+				} catch (NotEnoughMunitions e) {
+					e.showMessage();
+				}
+
+		playerDodgeChance = player.getDodgeChance();
+		fighterDodgeChance = fighter.getDodgeChance();
+
+		for (BattleItem item : player.getInventory().getBattleItems())
+			fighterDodgeChance += -(fighterDodgeChance * item.getChance());
+
+		for (BattleItem item : fighter.getInventory().getBattleItems())
+			playerDodgeChance += -(fighterDodgeChance * item.getChance());
+
+		fighterDodgeChance += (fighterDodgeChance * player.getWeapon().getChance());
+	}
+}
